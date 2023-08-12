@@ -14,7 +14,7 @@ contexts:
       push: double_quoted_string
     - match: '[%@][-a-zA-Z$._0-9]+'
       scope: variable.other
-    - match: '[-a-zA-Z$._0-9]:'
+    - match: '[-a-zA-Z$._0-9]*:'
       scope: entity.name.label
     - match: '\b(-)?[0-9.]+\b'
       scope: constant.numeric
@@ -24,7 +24,7 @@ contexts:
       scope: keyword.control
     - match: '(fneg|add|fadd|sub|fsub|mul|fmul|udiv|sdiv|fdiv|urem|srem|frem|shl|lshr|ashr|and|or|xor|extractelement|insertelement|shufflevector|extractvalue|insertvalue|alloca|load|store|fence|cmpxchg|atomicrmw|getelementptr|trunc|zext|sext|fptrunc|fpext|fptoui|fptosi|uitofp|sitofp|ptrtoint|initoptr|bitcast|addrspacecast|icmp|fcmp|phi|select|freeze|call|ca_arg|landingpad|catchpad|cleanuppad)'
       scope: keyword.other
-    - match: '(declare|define)'
+    - match: '(label|declare|define)'
       scope: keyword.other
     - match: '((#|!)[a-zA-Z0-9.]+)'
       scope: entity.other.attribute-name
