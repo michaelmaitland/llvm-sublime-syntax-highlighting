@@ -1,0 +1,39 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+name: llvm
+file_extensions:
+  - ll
+scope: source.ll
+contexts:
+  main:
+    - match: ';.*$'
+      scope: punctuation.definition.comment
+    - match: '"'
+      scope: punctuation.definition.string.begin
+      push: double_quoted_string
+    - match: '[%@][-a-zA-Z$._0-9]+'
+      scope: variable.other
+    - match: '[-a-zA-Z$._0-9]:'
+      scope: entity.name.label
+    - match: '\b(-)?[0-9.]+\b'
+      scope: constant.numeric
+    - match: '(<.*?>|i[0-9]+|half|bfloat|float|double|fp128|x86_fp80|ppc_fp128)'
+      scope: entity.name.type
+    - match: '(ret|br|switch|indirectvr|invoke|callbr|resume|catchswitch|catchret|cleanupret|unreachable)'
+      scope: keyword.control
+    - match: '(fneg|add|fadd|sub|fsub|mul|fmul|udiv|sdiv|fdiv|urem|srem|frem|shl|lshr|ashr|and|or|xor|extractelement|insertelement|shufflevector|extractvalue|insertvalue|alloca|load|store|fence|cmpxchg|atomicrmw|getelementptr|trunc|zext|sext|fptrunc|fpext|fptoui|fptosi|uitofp|sitofp|ptrtoint|initoptr|bitcast|addrspacecast|icmp|fcmp|phi|select|freeze|call|ca_arg|landingpad|catchpad|cleanuppad)'
+      scope: keyword.other
+    - match: '(declare|define)'
+      scope: keyword.other
+    - match: '((#|!)[a-zA-Z0-9.]+)'
+      scope: entity.other.attribute-name
+
+  double_quoted_string:
+    - meta_scope: string.quoted.double.c
+    - match: '\\.'
+      scope: constant.character.escape.c
+    - match: '"'
+      scope: punctuation.definition.string.end.c
+      pop: true
+
